@@ -1,7 +1,7 @@
 # openapi-scf-proxy-go
 This repository is inspired by [Ice-Hazymoon/openai-scf-proxy](https://github.com/Ice-Hazymoon/openai-scf-proxy).
 
-## 腾讯云函数SCF服务的设置
+## 腾讯云/阿里云函数SCF服务的设置
 添加环境变量：
 * TargetHostURL=https://api.openai.com
 * ProxyListenOn=0.0.0.0:9000

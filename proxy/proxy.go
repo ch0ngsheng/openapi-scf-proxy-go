@@ -1,6 +1,7 @@
 package proxy
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -34,6 +35,7 @@ func modifyRequest(req *http.Request, targetHost string) {
 
 	req.Header["X-Forwarded-For"] = nil
 	req.Header.Del("X-Real-Ip")
+	req.Header.Del("X-Forwarded-Proto")
 }
 
 func errorHandler() func(http.ResponseWriter, *http.Request, error) {
@@ -56,6 +58,13 @@ func modifyResponse() func(*http.Response) error {
 // RequestHandler handles the http request using proxy
 func RequestHandler(proxy *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		proxy.ServeHTTP(w, r)
+	}
+}
+
+// RequestHandler2 handles the http request using proxy for aliyun
+func RequestHandler2(proxy *httputil.ReverseProxy) func(context.Context, http.ResponseWriter, *http.Request) {
+	return func(_ context.Context, w http.ResponseWriter, r *http.Request) {
 		proxy.ServeHTTP(w, r)
 	}
 }

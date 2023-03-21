@@ -1,10 +1,9 @@
 package main
 
 import (
-	"log"
-	"net/http"
 	"os"
 
+	"github.com/aliyun/fc-runtime-go-sdk/fc"
 	pp "openapi-scf-proxy-go/proxy"
 )
 
@@ -31,7 +30,10 @@ func main() {
 		panic(err)
 	}
 
-	// handle all requests to your server using the proxy
-	http.HandleFunc("/", pp.RequestHandler(proxy))
-	log.Fatal(http.ListenAndServe(ListenOn, nil))
+	// for AliYun
+	fc.StartHttp(pp.RequestHandler2(proxy))
+
+	// for Tencent Cloud
+	// http.HandleFunc("/", pp.RequestHandler(proxy))
+	// log.Fatal(http.ListenAndServe(ListenOn, nil))
 }
