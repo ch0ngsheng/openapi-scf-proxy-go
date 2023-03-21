@@ -15,7 +15,7 @@ var (
 
 func init() {
 	// TargetHostURL=https://api.openai.com
-	Target = os.Getenv("ProxyHostURL")
+	Target = os.Getenv("TargetHostURL")
 	// ProxyListenOn=0.0.0.0:9000
 	ListenOn = os.Getenv("ProxyListenOn")
 }
