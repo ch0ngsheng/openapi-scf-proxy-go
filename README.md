@@ -12,6 +12,6 @@ GOOS=linux GOARCH=amd64 go build -o main main.go
 zip main.zip main scf_bootstrap
 ```
 
-函数服务部署成功后，通过APIGW开放域名（公网访问地址）访问。
+函数服务部署成功后，通过公网访问地址访问。
 
 云函数相关的详细操作步骤，可以参考[这里](https://github.com/Ice-Hazymoon/openai-scf-proxy)。
